@@ -78,9 +78,8 @@ def create_driver():
         options.add_argument('--disable-dev-shm-usage')
         options.add_argument('--disable-gpu')
         options.add_argument('--window-size=1920,1080')
-        chromium_path = "/data/data/com.termux/files/usr/bin/chromium"
-        if os.path.exists(chromium_path):
-            options.binary_location = chromium_path
+        options.add_argument('--disable-blink-features=AutomationControlled')
+        
         service = Service(ChromeDriverManager().install())
         driver = webdriver.Chrome(service=service, options=options)
         return driver
